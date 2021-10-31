@@ -1,0 +1,27 @@
+{
+  "name": "once",
+  "version": "1.0.0",
+  "description": "M2M kernel",
+  "main": "index.js",
+  "scripts": {
+    "start": "node Once.class.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cerulean-Circle-GmbH/once.ts.git"
+  },
+  "author": "",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Cerulean-Circle-GmbH/once.ts/issues"
+  },
+  "homepage": "https://github.com/Cerulean-Circle-GmbH/once.ts#readme",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "file": "^0.2.2",
+    "http": "^0.0.1-security",
+    "serve-index": "^1.9.1",
+    "url": "^0.11.0"
+  }
+}
