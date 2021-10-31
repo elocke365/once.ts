@@ -75,17 +75,18 @@ class Once {
     }
 
     async initServersideOnce() {
-        process.on('uncaughtException', function (err) {
-            logger.error("Unhandled exception follows");
-            logger.error(err, err.stack);
-        })
+        // process.on('uncaughtException', function (err) {
+        //     logger.error("Unhandled exception follows");
+        //     logger.error(err, err.stack);
+        // })
+
         ONCE.global.url = require('url');      
         ONCE.global.fs = require('fs');
           
         Once.express = require('express');
         Once.http = require('http');
 
-        Once.express.serveIndex = require('serve-index');
+        // Once.express.serveIndex = require('serve-index');
 
         ONCE.experss = Once.express();
         ONCE.experss.get('/', ONCE.handleHTTPRequest);
@@ -138,10 +139,6 @@ class Once {
     }
 
     async handleHTTPRequest(request, response) {
-
-
-
-
         var path = url.parse(request.url).pathname;
         logger.log("Received " + request.method + " to:", request.headers.host, path, "from", request.connection.remoteAddress);
         
@@ -161,32 +158,32 @@ class Once {
                     case '/':
                         ONCE.renderHTML('Once.html', 'text/html', response);
                         break;
-                    case '/test':
-                        response.redirect(ONCE.path + '/test/html/Once.mochaTest.html');
-                        //ONCE.renderHTML(ONCE.basePath + '/test/html/Once.mochaTest.html', 'text/html', response);
-                        break;
-                    case "/once/env":
-                        response.writeHead(200, {
-                            'Content-Type': "application/json"
-                        });
+                    // case '/test':
+                    //     response.redirect(ONCE.path + '/test/html/Once.mochaTest.html');
+                    //     //ONCE.renderHTML(ONCE.basePath + '/test/html/Once.mochaTest.html', 'text/html', response);
+                    //     break;
+                    // case "/once/env":
+                    //     response.writeHead(200, {
+                    //         'Content-Type': "application/json"
+                    //     });
 
-                        // Marcel: does not work over the ngx proxy on test.wo-da.de   will fallback to http and the produce a cors error 20210804
+                    //     // Marcel: does not work over the ngx proxy on test.wo-da.de   will fallback to http and the produce a cors error 20210804
 
-                        // let clientEnv = {};
-                        // Object.assign(clientEnv, ONCE.ENV);
-                        // clientEnv.ONCE_DEFAULT_URL = request.protocol + '://' + request.headers.host;
+                    //     // let clientEnv = {};
+                    //     // Object.assign(clientEnv, ONCE.ENV);
+                    //     // clientEnv.ONCE_DEFAULT_URL = request.protocol + '://' + request.headers.host;
 
-                        response.write(JSON.stringify(ONCE.ENV));
-                        response.end();
-                        break;
-                    case '/favicon.ico':
-                        ONCE.renderHTML(ONCE.repositoryRootPath + Once.REPOSITORY_ROOT + '/favicon.ico', 'image/x-icon', response);
-                        break;
-                    /*
-                                    case Once.REPOSITORY_ROOT:
-                                        ONCE.renderHTML('./login.html', response);
-                                        break;
-                        */
+                    //     response.write(JSON.stringify(ONCE.ENV));
+                    //     response.end();
+                    //     break;
+                    // case '/favicon.ico':
+                    //     ONCE.renderHTML(ONCE.repositoryRootPath + Once.REPOSITORY_ROOT + '/favicon.ico', 'image/x-icon', response);
+                    //     break;
+                    // /*
+                    //                 case Once.REPOSITORY_ROOT:
+                    //                     ONCE.renderHTML('./login.html', response);
+                    //                     break;
+                    //     */
                     default:
                         response.writeHead(404);
                         response.write('Route not defined: ' + path);
