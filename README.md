@@ -13,6 +13,7 @@ ONCE means "Object Network Communication Engine" and enables distributed objects
 
 
 # INTERNAL: Initial Setup done with:
+## initial setup
 
 ```
 npm init
@@ -21,5 +22,22 @@ npm init
 ```
 npm i -D express
 npm i -D serve-index
+
+npm i -D typescript
+npx tsc --init
+npm install --save-dev tslint
+npx tslint --init
 ```
 
+## setup debugging & watch
+```
+npm install -D ts-node nodemon  npm-run-all
+```
+
+
+
+# Definition file generate e.g.
+npx tsc -d Once.class.ts 
+
+# Useful links
+https://developer.okta.com/blog/2018/11/15/node-express-typescript
